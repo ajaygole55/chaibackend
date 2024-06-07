@@ -15,6 +15,5 @@ connectDB().then(() => {
     })
 }).catch((err) => {
     console.log("MongoDB connenction faild !!!:", err)
-
 })
 

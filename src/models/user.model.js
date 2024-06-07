@@ -63,6 +63,7 @@ userSchema.pre("save", async function (next) {
     next();
 });
 
+
 // Method to check if the provided password is correct
 userSchema.methods.isPasswordCorrect = async function (password) {
     return await bcrypt.compare(password, this.password);
@@ -70,6 +71,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 
 // Method to generate an access token for the user
 userSchema.methods.generateAccsesToken = async function () {
+    console.log("Call this Functions");
     return jwt.sign(
         {
             _id: this._id,
@@ -82,10 +84,12 @@ userSchema.methods.generateAccsesToken = async function () {
             expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
         }
     );
+    
 };
 
 // Method to generate a refresh token for the user
 userSchema.methods.generateRefreshToken = async function () {
+    console.log("Call this functions1");
     return jwt.sign(
         {
             _id: this._id,
